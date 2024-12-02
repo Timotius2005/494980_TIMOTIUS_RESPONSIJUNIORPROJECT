@@ -88,7 +88,7 @@ namespace responsiTimotius
             try
             {
                 conn.Open();
-                sql = @"select * fromm kr_insert(:_nama,:_id_dep)";
+                sql = @"select * from kr_insert(:_nama,:_id_dep)";
                 
                 cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("_nama", txtNama.Text);
@@ -128,6 +128,15 @@ namespace responsiTimotius
             {
                 MessageBox.Show("eRROR" + ex.Message, "gAGAL Delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cbDepartemen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            conn.Open();
+            sql = @"select nama_departemen from departemen";
+            cmd = new NpgsqlCommand(sql, conn);
+            conn.Close() ;
+
         }
     }
 }
